@@ -19,16 +19,6 @@ To create Overcooked! inspired levels that people can enjoy playing.
 #### Scope of Project:
 Three levels of gameplay played couch co-op style on a computer screen. Ideally, controllers can be connected to the computer to control characters' movement, but in the worst-case, we are going to resort to WASD and UDLR keys. 
 
-#### NUS Orbital 2026 - Milestone 1
-1. Get the playing screen drawn out
-2. Get the characters and different foodstuffs drawn out
-3. Make characters move
-
-#### Features to be completed midway to Milestone 2:
-1. Order list
-2. Take ingredients out from boxes
-3. Draw characters sideways + different hand positions
-
 #### Tech Stack
 1. Krita + Procreate (Frontend, for drawing and animation)
 2. Unity (Game Engine)
@@ -40,8 +30,14 @@ Featuring Stir-fried Kailan, Carrot Cake, Chilli Crab and more Singaporean delic
 ##### putting a cap on stress (maybe)
 Instead of having to score a minimum amount to pass a level in Overcooked!, our levels use a countdown system, where a specified number of orders have to be fulfilled by certain times, tiered by gold, silver and bronze (inspired by Moving Out).
 
+#### NUS Orbital 2026 - Milestone 1
+1. Get the playing screen drawn out
+2. Get the characters and different foodstuffs drawn out
+3. Make characters move
+4. Take ingredients out from boxes
+
 #### Development Plan
-##### Mid Milestone 2
+##### Mid Milestone 2 (15/6)
 
 // dashing?
 
@@ -59,7 +55,7 @@ Process-based stuff
 
 Order Line + Order Fulfilment 
 
-##### Milestone 2
+##### Milestone 2 (29/6)
 
 - [ ] Drawing stuff
 1. Fire Extinguisher
@@ -72,11 +68,11 @@ Order Line + Order Fulfilment
 2. Fire spreading
 3. Fire extinguishing
 
-Mid Milestone 3
+##### Mid Milestone 3 (13/7)
 1. Foods that require intermediate preparation
 2. Plate system
 
-Milestone 3
+##### Milestone 3 (27/7)
 1. Crows
 2. Spoilt food
 
