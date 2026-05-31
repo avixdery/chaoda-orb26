@@ -41,69 +41,45 @@ Featuring Stir-fried Kailan, Carrot Cake, Chilli Crab and more Singaporean delic
 Instead of having to score a minimum amount to pass a level in Overcooked!, our levels use a countdown system, where a specified number of orders have to be fulfilled by certain times, tiered by gold, silver and bronze (inspired by Moving Out).
 
 #### Development Plan
-Feature 1 (core): Foundation for each level (by Milestone 1)
-a. Introduce new recipes and cooking methods
-b. Dashing
-c. Grabbing ingredients
-d. Cooking ingredients
-e. Plating food
-f. Serving food
-g. Time-based ranking
-i. System will time how long players take to complete each round,
-performance ranking on Gold, Silver, Bronze is given based on
-completion time
+##### Mid Milestone 2
 
-h. Order list
-i. Burning and fire spread mechanics
-i. Food that is left cooking unattended for too long will burn and start a fire
-ii. A countdown will be activated and players have to extinguish the fire
-before it ends, or else the level will end immediately
+// dashing?
 
-2. Feature 2 (core): Level 1 (by Milestone 2)
-a. 3 basic recipes (only requires cooking, plating and serving)
-b. First time playing this level will trigger a tutorial-style gameplay to guide players
-through the game mechanics
-c. Plates will be constantly available throughout the level
-3. Feature 3 (core): Level 2 (by Milestone 2)
-a. 2 intermediate recipes (requires one more step: preparing the ingredients)
-b. Introduction of plate system
-i. Plates will be given to players periodically, instead of being constantly
-available
-ii. Players will have to take into account the lack of plates when cooking
+- [ ] Drawing stuff
+1. OCs sideways
+2. OCs holding items / not holding items
 
-4. Feature 4 (core): Level 3 (by Milestone 2)
-a. 2 advanced recipes (recipes are now customised with greater variation)
-b. Introduction of enemies (crows)
-i. Periodically, crows will fly into the kitchen, threatening to contaminate
-the food
-ii. Players will have to shoo away the crows before it touches the food, if
-not the food will be marked as spoilt
-iii. Players have to throw away spoilt foods
-5. Feature 5 (core): Main Screen (by Milestone 3)
-a. Start game button
-b. Navigation to the different pages
-i. Control guide
-ii. Recipe book
+- [ ] Coding stuff
 
-iii. Character selection system
+Process-based stuff
+1. Grabbing ingredients
+2. Cooking ingredients
+3. Plating food
+4. Serving food
 
-6. Feature 6 (extension): Control guide (by Milestone 3)
-a. Guide to the controls for the two players
-b. Guide to the different game mechanisms
-7. Feature 7 (extension): Character Selection (by Milestone 3)
-a. Players can choose between 5 characters, each with 2 different color schemes to
-allow for better visual distinction between the 2 players
-8. Feature 8 (extension): Recipe Book (by Milestone 3)
-a. Collection of recipes that players have unlocked
-b. Includes the process of making the foods, from the ingredients required to the
-ways to cook the food
+Order Line + Order Fulfilment 
 
-9. Feature 9 (extension): Transition Screens (by Milestone 3)
-a. Loading screens
-b. Choosing level screen
-c. Start of level screen
-d. End of level screen
-e. End of game screen
+##### Milestone 2
+
+- [ ] Drawing stuff
+1. Fire Extinguisher
+2. Fire
+3. Start screen
+4. Game Over screen
+
+- [ ] Coding stuff
+1. Timer + tierings
+2. Fire spreading
+3. Fire extinguishing
+
+Mid Milestone 3
+1. Foods that require intermediate preparation
+2. Plate system
+
+Milestone 3
+1. Crows
+2. Spoilt food
+
 
 
 
