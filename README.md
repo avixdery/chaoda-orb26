@@ -1,4 +1,47 @@
 ## chaoda!
-### this is a game
+### have you eaten?
+Bartholomew III, affectionally known as Barty, and Claire are two humble chefs who recently succeeded in bidding for a zichar stall in downtown Singapore. On their first day of business, they realise they _really_ did underestimate the dinner crowd here...
+
 ---
-### milestone 1
+#### Motivation:
+As avid Overcooked! players, we almost completed the base game and wish for more levels to play. Instead of waiting for more levels from the game developer, we decided to try our hands on making our own.
+
+#### Aim:
+To create Overcooked! inspired levels that people can enjoy playing.
+
+#### User Stories:
+1. As a chef, I need to know how to prepare my order.
+2. As a chef, I want to be able to differentiate between cooked and uncooked food.
+3. As a chef, I want obstacles when I am cooking food.
+4. As a chef, I want to know how long my food is cooking for.
+5. As a chef, I want to know how much points I've earned right after an order is submitted.
+
+#### Scope of Project:
+Three levels of gameplay played couch co-op style on a computer screen. Ideally, controllers can be connected to the computer to control characters' movement, but in the worst-case, we are going to resort to WASD and UDLR keys. 
+
+#### NUS Orbital 2026 - Milestone 1
+1. Get the playing screen drawn out
+2. Get the characters and different foodstuffs drawn out
+3. Make characters move
+
+#### Features to be completed midway to Milestone 2:
+1. Order list
+2. Take ingredients out from boxes
+3. Draw characters sideways + different hand positions
+
+#### Tech Stack
+1. Krita + Procreate (Frontend, for drawing and animation)
+2. Unity (Game Engine)
+3. GitHub
+
+#### how are we different from Overcooked!
+##### Local Food
+Featuring Stir-fried Kailan, Carrot Cake, Chilli Crab and more Singaporean delicacies.
+##### Less stressful (maybe)
+
+
+#### Development Plan
+kiv
+
+
+
