@@ -1,162 +1,240 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PlayerCarryFood : MonoBehaviour
+public class BartyRiceHandler : MonoBehaviour
 {
-    [Header("Interaction")]
-    public KeyCode interactKey = KeyCode.Slash;
-    public float interactRadius = 1.2f;
-
-    [Header("Crate")]
-    public LayerMask crateLayer;
-
-    [Header("Tilemaps")]
-    public Tilemap backgroundTilemap;
+    [Header("References")]
+    public GameObject ricePrefab;
+    public Transform holdPoint;
     public Tilemap counterTilemap;
 
-    [Header("Carry Point")]
-    public Transform carryPoint;
+    [Header("Interaction")]
+    public LayerMask crateLayer;
+    public LayerMask counterLayer;
+    public float interactRadius = 0.6f;
 
-    private GameObject heldFood;
+    [Header("Rice Position Offsets")]
+    public Vector3 heldRiceOffset = Vector3.zero;
+    public Vector3 counterRiceOffset = Vector3.zero;
+
+    [Header("Rice Sorting")]
+    public string heldSortingLayer = "player";
+    public int heldOrderInLayer = 10;
+
+    public string counterSortingLayer = "counter";
+    public int counterOrderInLayer = 10;
+
+    private GameObject heldRice;
+
+    // This stores which counter tile has rice on it.
+    private Dictionary<Vector3Int, GameObject> riceOnCounters = new Dictionary<Vector3Int, GameObject>();
 
     void Update()
     {
-        if (Input.GetKeyDown(interactKey))
+        if (Input.GetKeyDown(KeyCode.Slash))
         {
-            if (heldFood == null)
-            {
-                TryPickUpFoodFromCrate();
-            }
-            else
-            {
-                DropFood();
-            }
+            TryInteract();
         }
     }
 
-    void TryPickUpFoodFromCrate()
+    void TryInteract()
     {
+        // CASE 1: Barty is already holding rice.
+        // Press / near a counter to drop it.
+        if (heldRice != null)
+        {
+            if (TryGetNearbyCounterCell(out Vector3Int counterCell))
+            {
+                DropRiceOnCounter(counterCell);
+            }
+            else
+            {
+                Debug.Log("Barty is holding rice, but there is no counter nearby.");
+            }
+
+            return;
+        }
+
+        // CASE 2: Barty is not holding rice.
+        // First check whether this nearby counter tile already has rice.
+        if (TryGetNearbyCounterCell(out Vector3Int nearbyCounterCell))
+        {
+            if (riceOnCounters.ContainsKey(nearbyCounterCell) && riceOnCounters[nearbyCounterCell] != null)
+            {
+                PickUpRiceFromCounter(nearbyCounterCell);
+                return;
+            }
+        }
+
+        // CASE 3: Barty is not holding rice and no rice is on the counter.
+        // If near rice crate, spawn fresh rice into Barty's hands.
+        if (IsNearRiceCrate())
+        {
+            SpawnRiceInHands();
+            return;
+        }
+
+        Debug.Log("Nothing to interact with. Go near the rice crate or a counter with rice.");
+    }
+
+    bool IsNearRiceCrate()
+    {
+        Vector2 checkPosition = GetInteractPosition();
+
         Collider2D crateHit = Physics2D.OverlapCircle(
-            transform.position,
+            checkPosition,
             interactRadius,
             crateLayer
         );
 
-        if (crateHit == null)
+        return crateHit != null;
+    }
+
+    bool TryGetNearbyCounterCell(out Vector3Int bestCell)
+    {
+        bestCell = Vector3Int.zero;
+
+        if (counterTilemap == null)
         {
-            Debug.Log("No crate nearby.");
-            return;
+            Debug.LogWarning("Counter Tilemap is not assigned on BartyRiceHandler.");
+            return false;
         }
 
-        Crate crate = crateHit.GetComponent<Crate>();
+        Vector3 checkPosition = GetInteractPosition();
 
-        if (crate == null)
-        {
-            Debug.Log("The object nearby is on the Crate layer but has no FoodCrate script.");
-            return;
-        }
-
-        if (crate.foodPrefab == null)
-        {
-            Debug.Log("This crate has no food prefab assigned.");
-            return;
-        }
-
-        heldFood = Instantiate(
-            crate.foodPrefab,
-            carryPoint.position,
-            Quaternion.identity,
-            carryPoint
+        // First make sure there is actually a counter collider nearby.
+        Collider2D counterHit = Physics2D.OverlapCircle(
+            checkPosition,
+            interactRadius,
+            counterLayer
         );
 
-        heldFood.transform.localPosition = Vector3.zero;
-
-        Collider2D foodCollider = heldFood.GetComponent<Collider2D>();
-
-        if (foodCollider != null)
+        if (counterHit == null)
         {
-            foodCollider.enabled = false;
+            return false;
         }
 
-        SpriteRenderer foodSprite = heldFood.GetComponent<SpriteRenderer>();
-        SpriteRenderer playerSprite = GetComponent<SpriteRenderer>();
+        // Convert Barty's interact position to a Tilemap cell.
+        Vector3Int originCell = counterTilemap.WorldToCell(checkPosition);
 
-        if (foodSprite != null && playerSprite != null)
+        bool foundTile = false;
+        float bestDistance = Mathf.Infinity;
+
+        // Search nearby cells around Barty's hands.
+        // This makes it less strict, so you don't need to stand perfectly on the tile.
+        for (int x = -1; x <= 1; x++)
         {
-            foodSprite.sortingLayerID = playerSprite.sortingLayerID;
-            foodSprite.sortingOrder = playerSprite.sortingOrder + 1;
-        }
-
-        Debug.Log("Picked up food.");
-    }
-
-    void DropFood()
-    {
-        Vector3 dropPosition;
-
-        Vector3Int nearestCounterCell = FindNearestCounterCell();
-
-        if (counterTilemap != null && counterTilemap.HasTile(nearestCounterCell))
-        {
-            dropPosition = counterTilemap.GetCellCenterWorld(nearestCounterCell);
-            Debug.Log("Dropped food on counter.");
-        }
-        else
-        {
-            Vector3Int floorCell = backgroundTilemap.WorldToCell(transform.position);
-            dropPosition = backgroundTilemap.GetCellCenterWorld(floorCell);
-            Debug.Log("Dropped food on floor.");
-        }
-
-        heldFood.transform.SetParent(null);
-        heldFood.transform.position = dropPosition;
-
-        Collider2D foodCollider = heldFood.GetComponent<Collider2D>();
-
-        if (foodCollider != null)
-        {
-            foodCollider.enabled = true;
-        }
-
-        heldFood = null;
-    }
-
-    Vector3Int FindNearestCounterCell()
-    {
-        Vector3Int playerCell = counterTilemap.WorldToCell(transform.position);
-
-        Vector3Int nearestCell = playerCell;
-        float nearestDistance = Mathf.Infinity;
-
-        int searchRange = Mathf.CeilToInt(interactRadius) + 1;
-
-        for (int x = -searchRange; x <= searchRange; x++)
-        {
-            for (int y = -searchRange; y <= searchRange; y++)
+            for (int y = -1; y <= 1; y++)
             {
-                Vector3Int currentCell = playerCell + new Vector3Int(x, y, 0);
+                Vector3Int cellToCheck = originCell + new Vector3Int(x, y, 0);
 
-                if (!counterTilemap.HasTile(currentCell))
+                if (!counterTilemap.HasTile(cellToCheck))
                 {
                     continue;
                 }
 
-                Vector3 cellWorldPosition = counterTilemap.GetCellCenterWorld(currentCell);
-                float distance = Vector2.Distance(transform.position, cellWorldPosition);
+                Vector3 cellCenter = counterTilemap.GetCellCenterWorld(cellToCheck);
+                float distance = Vector2.Distance(checkPosition, cellCenter);
 
-                if (distance <= interactRadius && distance < nearestDistance)
+                if (distance < bestDistance)
                 {
-                    nearestDistance = distance;
-                    nearestCell = currentCell;
+                    bestDistance = distance;
+                    bestCell = cellToCheck;
+                    foundTile = true;
                 }
             }
         }
 
-        return nearestCell;
+        return foundTile;
+    }
+
+    void SpawnRiceInHands()
+    {
+        if (ricePrefab == null)
+        {
+            Debug.LogWarning("Rice Prefab is not assigned on BartyRiceHandler.");
+            return;
+        }
+
+        if (holdPoint == null)
+        {
+            Debug.LogWarning("HoldPoint is not assigned on BartyRiceHandler.");
+            return;
+        }
+
+        heldRice = Instantiate(ricePrefab, holdPoint.position, Quaternion.identity);
+        heldRice.transform.SetParent(holdPoint);
+        heldRice.transform.localPosition = heldRiceOffset;
+
+        SetRiceSorting(heldRice, heldSortingLayer, heldOrderInLayer);
+
+        Debug.Log("Picked up rice from crate.");
+    }
+
+    void DropRiceOnCounter(Vector3Int counterCell)
+    {
+        if (riceOnCounters.ContainsKey(counterCell) && riceOnCounters[counterCell] != null)
+        {
+            Debug.Log("This counter tile already has rice on it.");
+            return;
+        }
+
+        Vector3 dropPosition = counterTilemap.GetCellCenterWorld(counterCell) + counterRiceOffset;
+
+        heldRice.transform.SetParent(null);
+        heldRice.transform.position = dropPosition;
+
+        SetRiceSorting(heldRice, counterSortingLayer, counterOrderInLayer);
+
+        riceOnCounters[counterCell] = heldRice;
+        heldRice = null;
+
+        Debug.Log("Dropped rice on counter.");
+    }
+
+    void PickUpRiceFromCounter(Vector3Int counterCell)
+    {
+        GameObject rice = riceOnCounters[counterCell];
+
+        riceOnCounters.Remove(counterCell);
+
+        heldRice = rice;
+        heldRice.transform.SetParent(holdPoint);
+        heldRice.transform.localPosition = heldRiceOffset;
+
+        SetRiceSorting(heldRice, heldSortingLayer, heldOrderInLayer);
+
+        Debug.Log("Picked rice back up from counter.");
+    }
+
+    void SetRiceSorting(GameObject riceObject, string sortingLayerName, int orderInLayer)
+    {
+        SpriteRenderer spriteRenderer = riceObject.GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("Rice prefab has no SpriteRenderer.");
+            return;
+        }
+
+        spriteRenderer.sortingLayerName = sortingLayerName;
+        spriteRenderer.sortingOrder = orderInLayer;
+    }
+
+    Vector2 GetInteractPosition()
+    {
+        if (holdPoint != null)
+        {
+            return holdPoint.position;
+        }
+
+        return transform.position;
     }
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, interactRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(GetInteractPosition(), interactRadius);
     }
 }

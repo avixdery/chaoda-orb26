@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
+  - Counter
   - Crate
-  - 
   - 
   - 
   - 
@@ -44,8 +44,14 @@ TagManager:
   - name: Player
     uniqueID: 3146375901
     locked: 0
+  - name: Counter
+    uniqueID: 4125167787
+    locked: 0
   - name: Crate
     uniqueID: 2325017413
+    locked: 0
+  - name: Recipes
+    uniqueID: 1050341067
     locked: 0
   m_RenderingLayers:
   - Default
