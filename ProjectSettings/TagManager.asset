@@ -2,17 +2,17 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Counter
+  - Crate
   - 
   - 
   - 
@@ -41,3 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 3146375901
+    locked: 0
+  - name: Counter
+    uniqueID: 4125167787
+    locked: 0
+  - name: Crate
+    uniqueID: 2325017413
+    locked: 0
+  - name: Recipes
+    uniqueID: 1050341067
+    locked: 0
+  m_RenderingLayers:
+  - Default
