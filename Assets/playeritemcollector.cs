@@ -26,9 +26,41 @@ public class BartyRiceHandler : MonoBehaviour
     public int counterOrderInLayer = 10;
 
     private GameObject heldRice;
+    private Queue<Order> orderQueue = new Queue<Order>();
+    private int ordersCompleted = 0;
+
+    public GameObject orderTicketPrefab;
+    public Transform ticketParent;
+    private List<GameObject> activeTickets = new List<GameObject>();
+
 
     // This stores which counter tile has rice on it.
     private Dictionary<Vector3Int, GameObject> riceOnCounters = new Dictionary<Vector3Int, GameObject>();
+    
+    void Start()
+    {
+        GenerateOrders();
+    }
+
+    void GenerateOrders()
+    {
+        orderQueue.Enqueue(new Order { recipeName = "Rice" });
+        orderQueue.Enqueue(new Order { recipeName = "More Rice" });
+        orderQueue.Enqueue(new Order { recipeName = "We Only Serve Plain Rice" });
+
+        for (int i = 0; i < 8; i++)
+        {
+            SpawnTicket();
+        }
+
+        Debug.Log("Rice orders created: " + orderQueue.Count);
+    }
+
+    void SpawnTicket()
+    {
+        GameObject ticket = Instantiate(orderTicketPrefab, ticketParent);
+        activeTickets.Add(ticket);
+    }
 
     void Update()
     {
@@ -36,6 +68,39 @@ public class BartyRiceHandler : MonoBehaviour
         {
             TryInteract();
         }
+    }
+
+    void SubmitRice()
+    {
+        Destroy(heldRice);
+        heldRice = null;
+
+        if (orderQueue.Count > 0)
+        {
+            orderQueue.Dequeue();
+            ordersCompleted++;
+
+            Debug.Log("Rice submitted!");
+            RemoveTicket();
+        }
+            else
+        {
+            Debug.Log("No active orders!");
+        }
+    }
+
+    void RemoveTicket()
+    {
+        if (activeTickets.Count == 0) return;
+
+        GameObject ticket = activeTickets[0];
+        activeTickets.RemoveAt(0);
+        Destroy(ticket);
+    }
+
+    public void SubmitFromButton()
+    {
+        SubmitRice();
     }
 
     void TryInteract()
@@ -238,3 +303,10 @@ public class BartyRiceHandler : MonoBehaviour
         Gizmos.DrawWireSphere(GetInteractPosition(), interactRadius);
     }
 }
+
+[System.Serializable]
+public class Order
+{
+    public string recipeName;
+}
+
