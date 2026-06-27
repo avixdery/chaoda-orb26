@@ -2,18 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class BartyRiceHandler : MonoBehaviour
+public class submit_an_order : MonoBehaviour
 {
+    private int ordersCompleted = 0;
     [Header("References")]
-    public GameObject ricePrefab;
     public Transform holdPoint;
-    public Tilemap submissionTilemap;
-    public TileBase submissionTile;
     public Tilemap counterTilemap;
 
     [Header("Interaction")]
     public LayerMask submissionLayer;
-    public LayerMask crateLayer;
     public LayerMask counterLayer;
     public float interactRadius = 0.6f;
 
@@ -41,92 +38,46 @@ public class BartyRiceHandler : MonoBehaviour
         }
     }
 
+    void SubmitRice()
+    {
+        Debug.Log("submitting rice!");
+        Destroy(heldRice);
+        heldRice = null;
+        ordersCompleted++;
+        Debug.Log("order update: " + ordersCompleted);
+    }
+
     void TryInteract()
     {
-        
-        
         // CASE 1: Barty is already holding rice.
-        // Press / near a counter to drop it.
         if (heldRice != null)
         {
-            // 0. submit
             if (IsNearSubmitTile())
             {
                 SubmitRice();
                 return;
             }
-            // 1. then counter
+
             if (TryGetNearbyCounterCell(out Vector3Int counterCell))
             {
                 DropRiceOnCounter(counterCell);
-                return;
-            }            
-
-            Debug.Log("No valid drop location.");
-
-            return;
-        }
-
-        // CASE 2: Barty is not holding rice.
-        // First check whether this nearby counter tile already has rice.
-        if (TryGetNearbyCounterCell(out Vector3Int nearbyCounterCell))
-        {
-            if (riceOnCounters.ContainsKey(nearbyCounterCell) && riceOnCounters[nearbyCounterCell] != null)
-            {
-                PickUpRiceFromCounter(nearbyCounterCell);
-                return;
             }
-        }
-
-        // CASE 3: Barty is not holding rice and no rice is on the counter.
-        // If near rice crate, spawn fresh rice into Barty's hands.
-        if (IsNearRiceCrate())
-        {
-            SpawnRiceInHands();
             return;
         }
-
-        Debug.Log("Nothing to interact with. Go near the rice crate or a counter with rice.");
     }
     
-    private int ordersCompleted = 0;
-
-    void SubmitRice()
-    {
-        Destroy(heldRice);
-        heldRice = null;
-
-        ordersCompleted++;
-
-        Debug.Log("Order submitted! Total: " + ordersCompleted);
-    }
-
     bool IsNearSubmitTile()
-    {
-        if (submissionTilemap == null)
-        {
-            Debug.LogWarning("Submission Tilemap not assigned.");
-            return false;
-        }
-
-     
-        Vector3Int cell = submissionTilemap.WorldToCell(GetInteractPosition());
-
-        return submissionTilemap.HasTile(cell);
-
-    }
-
-    bool IsNearRiceCrate()
     {
         Vector2 checkPosition = GetInteractPosition();
 
-        Collider2D crateHit = Physics2D.OverlapCircle(
+        Collider2D submitHit = Physics2D.OverlapCircle(
             checkPosition,
             interactRadius,
-            crateLayer
+            submissionLayer
         );
-
-        return crateHit != null;
+        
+        Debug.Log("Submit hit: " + submitHit);
+        return submitHit != null;
     }
 
     bool TryGetNearbyCounterCell(out Vector3Int bestCell)
@@ -187,31 +138,6 @@ public class BartyRiceHandler : MonoBehaviour
         return foundTile;
     }
 
-
-
-    void SpawnRiceInHands()
-    {
-        if (ricePrefab == null)
-        {
-            Debug.LogWarning("Rice Prefab is not assigned on BartyRiceHandler.");
-            return;
-        }
-
-        if (holdPoint == null)
-        {
-            Debug.LogWarning("HoldPoint is not assigned on BartyRiceHandler.");
-            return;
-        }
-
-        heldRice = Instantiate(ricePrefab, holdPoint.position, Quaternion.identity);
-        heldRice.transform.SetParent(holdPoint);
-        heldRice.transform.localPosition = heldRiceOffset;
-
-        SetRiceSorting(heldRice, heldSortingLayer, heldOrderInLayer);
-
-        Debug.Log("Picked up rice from crate.");
-    }
-
     void DropRiceOnCounter(Vector3Int counterCell)
     {
         if (riceOnCounters.ContainsKey(counterCell) && riceOnCounters[counterCell] != null)
@@ -233,20 +159,6 @@ public class BartyRiceHandler : MonoBehaviour
         Debug.Log("Dropped rice on counter.");
     }
 
-    void PickUpRiceFromCounter(Vector3Int counterCell)
-    {
-        GameObject rice = riceOnCounters[counterCell];
-
-        riceOnCounters.Remove(counterCell);
-
-        heldRice = rice;
-        heldRice.transform.SetParent(holdPoint);
-        heldRice.transform.localPosition = heldRiceOffset;
-
-        SetRiceSorting(heldRice, heldSortingLayer, heldOrderInLayer);
-
-        Debug.Log("Picked rice back up from counter.");
-    }
 
     void SetRiceSorting(GameObject riceObject, string sortingLayerName, int orderInLayer)
     {
@@ -277,4 +189,5 @@ public class BartyRiceHandler : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(GetInteractPosition(), interactRadius);
     }
+
 }
