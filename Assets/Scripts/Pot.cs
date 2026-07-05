@@ -67,12 +67,6 @@ public class Pot : MonoBehaviour, IInteractable
         GameObject heldItem = playerCarry.GetHeldItem();
         FoodItem foodItem = heldItem.GetComponent<FoodItem>();
 
-        if (foodItem == null)
-        {
-            Debug.Log("Held item has no FoodItem script.");
-            return;
-        }
-
         Sprite cookingSprite = GetCookingSprite(foodItem.foodType);
         Sprite cookedSprite = GetCookedSprite(foodItem.foodType);
 
@@ -106,28 +100,10 @@ public class Pot : MonoBehaviour, IInteractable
 
     private void PlateCookedFood(playerItemCollector playerCarry)
     {
-        if (!playerCarry.IsHoldingItem())
-        {
-            Debug.Log("Need an empty plate.");
-            return;
-        }
-
         GameObject heldItem = playerCarry.GetHeldItem();
         FoodItem foodItem = heldItem.GetComponent<FoodItem>();
 
-        if (foodItem == null || foodItem.foodType != FoodType.EmptyPlate)
-        {
-            Debug.Log("Need an empty plate.");
-            return;
-        }
-
         GameObject platedFoodPrefab = GetPlatedFoodPrefab();
-
-        if (platedFoodPrefab == null)
-        {
-            Debug.Log("Missing cooked plate prefab.");
-            return;
-        }
 
         playerCarry.ClearHeldItem();
         Destroy(heldItem);

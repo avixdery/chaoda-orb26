@@ -53,8 +53,7 @@ public class playerItemCollector : MonoBehaviour
             }
             else
             {
-                Debug.Log("Barty is holding something, but there is no counter nearby.");
-            }
+           }
 
             return;
         }
@@ -77,9 +76,7 @@ public class playerItemCollector : MonoBehaviour
             SpawnItemInHands(nearbyFoodCrate);
             return;
         }
-
-        Debug.Log("Nothing to interact with. Go near the rice crate or a counter with rice.");
-    }
+   }
 
     bool TryInteractWithNearbyObject()
     {
@@ -125,18 +122,6 @@ public class playerItemCollector : MonoBehaviour
 
         FoodCrate foodCrate = crateHit.GetComponent<FoodCrate>();
 
-        if (foodCrate == null)
-        {
-            Debug.Log("Object is on Crate layer, but has no FoodCrate script attached.");
-            return null;
-        }
-
-        if (foodCrate.foodPrefab == null)
-        {
-            Debug.Log("FoodCrate has no food prefab assigned.");
-            return null;
-        }
-
         return foodCrate;
 
       //  return crateHit != null;
@@ -145,12 +130,6 @@ public class playerItemCollector : MonoBehaviour
     bool TryGetNearbyCounterCell(out Vector3Int bestCell)
     {
         bestCell = Vector3Int.zero;
-
-        if (counterTilemap == null)
-        {
-            Debug.LogWarning("Counter Tilemap is not assigned on BartyRiceHandler.");
-            return false;
-        }
 
         Vector3 checkPosition = GetInteractPosition();
 
@@ -198,33 +177,19 @@ public class playerItemCollector : MonoBehaviour
 
     void SpawnItemInHands(FoodCrate foodCrate)
     {
-/*        if (ricePrefab == null)
-        {
-            Debug.LogWarning("Rice Prefab is not assigned on BartyRiceHandler.");
-            return;
-        }
-*/
-        if (holdPoint == null)
-        {
-            Debug.LogWarning("HoldPoint is not assigned");
-            return;
-        }
-
         heldItem = Instantiate(foodCrate.foodPrefab, holdPoint.position, Quaternion.identity);
         heldItem.transform.SetParent(holdPoint);
         heldItem.transform.localPosition = heldItemOffset;
 
         SetItemSorting(heldItem, heldSortingLayer, heldOrderInLayer);
 
-        Debug.Log("Picked up food from crate.");
-    }
+   }
 
     void DropItemOnCounter(Vector3Int counterCell)
     {
         if (itemOnCounters.ContainsKey(counterCell) && itemOnCounters[counterCell] != null)
         {
-            Debug.Log("This counter tile already has food on it.");
-            return;
+           return;
         }
 
         Vector3 dropPosition = counterTilemap.GetCellCenterWorld(counterCell) + counterItemOffset;
@@ -237,8 +202,7 @@ public class playerItemCollector : MonoBehaviour
         itemOnCounters[counterCell] = heldItem;
         heldItem = null;
 
-        Debug.Log("Dropped food on counter.");
-    }
+   }
 
     void PickUpItemFromCounter(Vector3Int counterCell)
     {
@@ -252,8 +216,7 @@ public class playerItemCollector : MonoBehaviour
 
         SetItemSorting(heldItem, heldSortingLayer, heldOrderInLayer);
 
-        Debug.Log("Picked food back up from counter.");
-    }
+   }
     
     public bool IsHoldingItem()
     {
@@ -277,12 +240,6 @@ public class playerItemCollector : MonoBehaviour
             return;
         }
 
-        if (holdPoint == null)
-        {
-            Debug.LogWarning("HoldPoint is not assigned");
-            return;
-        }
-
         heldItem = item;
         heldItem.transform.SetParent(holdPoint);
         heldItem.transform.localPosition = heldItemOffset;
@@ -293,12 +250,6 @@ public class playerItemCollector : MonoBehaviour
     void SetItemSorting(GameObject itemObject, string sortingLayerName, int orderInLayer)
     {
         SpriteRenderer spriteRenderer = itemObject.GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer == null)
-        {
-            Debug.LogWarning("Prefab has no SpriteRenderer.");
-            return;
-        }
 
         spriteRenderer.sortingLayerName = sortingLayerName;
         spriteRenderer.sortingOrder = orderInLayer;
