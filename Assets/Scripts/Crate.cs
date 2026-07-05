@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class Crate : MonoBehaviour
+public class FoodCrate : MonoBehaviour
 {
     public GameObject foodPrefab;
+    public string foodName;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
