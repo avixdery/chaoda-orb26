@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Counter
   - Crate
-  - 
+  - Station
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Crate
     uniqueID: 2325017413
+    locked: 0
+  - name: Wok
+    uniqueID: 1335271093
     locked: 0
   - name: Recipes
     uniqueID: 1050341067
