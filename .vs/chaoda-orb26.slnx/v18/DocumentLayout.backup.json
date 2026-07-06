@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\lee_j\\onedrive\\desktop\\rrrr\\chaoda\\chaoda-orb26\\assets\\submitorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\submitorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\lee_j\\onedrive\\desktop\\rrrr\\chaoda\\chaoda-orb26\\assets\\scripts\\crate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\crate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\lee_j\\onedrive\\desktop\\rrrr\\chaoda\\chaoda-orb26\\assets\\scripts\\playeritemcollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playeritemcollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\lee_j\\onedrive\\desktop\\rrrr\\chaoda\\chaoda-orb26\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "submitOrders.cs",
+              "DocumentMoniker": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\submitOrders.cs",
+              "RelativeDocumentMoniker": "Assets\\submitOrders.cs",
+              "ToolTip": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\submitOrders.cs",
+              "RelativeToolTip": "Assets\\submitOrders.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwAsAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T07:30:20.486Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "playeritemcollector.cs",
+              "DocumentMoniker": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\Scripts\\playeritemcollector.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\playeritemcollector.cs",
+              "ToolTip": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\Scripts\\playeritemcollector.cs",
+              "RelativeToolTip": "Assets\\Scripts\\playeritemcollector.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAADwv0sAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T09:04:44.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Crate.cs",
+              "DocumentMoniker": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\Scripts\\Crate.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Crate.cs",
+              "ToolTip": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\Scripts\\Crate.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Crate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T07:50:49.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "playermovement.cs",
+              "DocumentMoniker": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\Scripts\\playermovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\playermovement.cs",
+              "ToolTip": "C:\\Users\\lee_j\\OneDrive\\Desktop\\rrrr\\chaoda\\chaoda-orb26\\Assets\\Scripts\\playermovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\playermovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T07:36:15.227Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
