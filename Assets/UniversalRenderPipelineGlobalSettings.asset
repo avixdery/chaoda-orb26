@@ -60,6 +60,7 @@ MonoBehaviour:
       - rid: 2850472418558869505
       - rid: 2850472418558869506
       - rid: 2850472418558869507
+<<<<<<< Updated upstream
       - rid: 8071544666090897408
       - rid: 8071544666090897409
       - rid: 8071544666090897410
@@ -67,6 +68,15 @@ MonoBehaviour:
       - rid: 8071544666090897412
       - rid: 8071544666090897413
       - rid: 8071544666090897414
+=======
+      - rid: 8071544755024035840
+      - rid: 8071544755024035841
+      - rid: 8071544755024035842
+      - rid: 8071544755024035843
+      - rid: 8071544755024035844
+      - rid: 8071544755024035845
+      - rid: 8071544755024035846
+>>>>>>> Stashed changes
     m_RuntimeSettings:
       m_List: []
   m_AssetVersion: 10
@@ -385,7 +395,11 @@ MonoBehaviour:
         m_ExportShaderVariants: 1
         m_ShaderVariantLogLevel: 0
         m_StripRuntimeDebugShaders: 1
+<<<<<<< Updated upstream
     - rid: 8071544666090897408
+=======
+    - rid: 8071544755024035840
+>>>>>>> Stashed changes
       type: {class: RayTracingRenderPipelineResources, ns: UnityEngine.Rendering.UnifiedRayTracing, asm: Unity.UnifiedRayTracing.Runtime}
       data:
         m_Version: 1
@@ -398,29 +412,49 @@ MonoBehaviour:
         m_BuildHlbvh: {fileID: 7200000, guid: 2d70cd6be91bd7843a39a54b51c15b13, type: 3}
         m_RestructureBvh: {fileID: 7200000, guid: 56641cb88dcb31a4398a4997ef7a7a8c, type: 3}
         m_Scatter: {fileID: 7200000, guid: a2eaeefdac4637a44b734e85b7be9186, type: 3}
+<<<<<<< Updated upstream
     - rid: 8071544666090897409
+=======
+    - rid: 8071544755024035841
+>>>>>>> Stashed changes
       type: {class: OnTilePostProcessResource, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
         m_UberPostShader: {fileID: 4800000, guid: fe4f13c1004a07d4ea1e30bfd0326d9e, type: 3}
+<<<<<<< Updated upstream
     - rid: 8071544666090897410
+=======
+    - rid: 8071544755024035842
+>>>>>>> Stashed changes
       type: {class: URPReflectionProbeSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         version: 1
         useReflectionProbeRotation: 0
+<<<<<<< Updated upstream
     - rid: 8071544666090897411
+=======
+    - rid: 8071544755024035843
+>>>>>>> Stashed changes
       type: {class: UniversalRenderPipelineRuntimeTerrainShaders, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
         m_TerrainDetailLit: {fileID: 4800000, guid: f6783ab646d374f94b199774402a5144, type: 3}
         m_TerrainDetailGrassBillboard: {fileID: 4800000, guid: 29868e73b638e48ca99a19ea58c48d90, type: 3}
         m_TerrainDetailGrass: {fileID: 4800000, guid: e507fdfead5ca47e8b9a768b51c291a1, type: 3}
+<<<<<<< Updated upstream
     - rid: 8071544666090897412
+=======
+    - rid: 8071544755024035844
+>>>>>>> Stashed changes
       type: {class: URPTerrainShaderSetting, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
         m_IncludeTerrainShaders: 1
+<<<<<<< Updated upstream
     - rid: 8071544666090897413
+=======
+    - rid: 8071544755024035845
+>>>>>>> Stashed changes
       type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
       data:
         m_version: 0
@@ -429,7 +463,11 @@ MonoBehaviour:
         - {fileID: 7433441132597879392, guid: 0ff99fd36f66f1a41bcc1d3c90e0922a, type: 3}
         - {fileID: 7433441132597879392, guid: 3a8aa4d508da46d4dace18b280f064aa, type: 3}
         m_VisualTreeAsset: {fileID: 9197481963319205126, guid: b647ceb1e15264943b9b439971e71110, type: 3}
+<<<<<<< Updated upstream
     - rid: 8071544666090897414
+=======
+    - rid: 8071544755024035846
+>>>>>>> Stashed changes
       type: {class: WorldRenderPipelineResources, ns: UnityEngine.PathTracing.Core, asm: Unity.PathTracing.Runtime}
       data:
         _version: 3
