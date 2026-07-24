@@ -12,6 +12,23 @@ public class submitOrders : MonoBehaviour, IInteractable
         if (heldItem == null)
             return;
 
+        FoodItem food = heldItem.GetComponent<FoodItem>();
+
+        if (food == null)
+            return;
+
+        bool canSubmit =
+        food.foodType == FoodType.CookedRicePlate ||
+        food.foodType == FoodType.CookedVegePlate ||
+        food.foodType == FoodType.CookedFishPlate;
+
+        if (!canSubmit)
+        {
+            Debug.Log("cannot submit.");
+            return;
+        }
+
+
         Destroy(heldItem);
         player.ClearHeldItem();
 

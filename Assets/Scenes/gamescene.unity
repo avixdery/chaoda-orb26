@@ -479,6 +479,8 @@ GameObject:
   - component: {fileID: 300767756}
   - component: {fileID: 300767758}
   - component: {fileID: 300767757}
+  - component: {fileID: 300767759}
+  - component: {fileID: 300767760}
   m_Layer: 8
   m_Name: Submit
   m_TagString: Untagged
@@ -643,6 +645,57 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &300767759
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300767755}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
+--- !u!114 &300767760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300767755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6868edaaaec8500418f5889c0a88e018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::submitOrders
+  orderCount: 0
 --- !u!1 &439707206
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +707,7 @@ GameObject:
   - component: {fileID: 439707207}
   - component: {fileID: 439707209}
   - component: {fileID: 439707208}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2169,7 +2222,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - serializedVersion: 2
     m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: a04174a554d95401db7c1d22d920b21f, type: 2}
+    m_Data: {fileID: 11400000, guid: d22a4b90e3d364c8aabd50a843605360, type: 2}
   - serializedVersion: 2
     m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 27f77baa937c84930a8a4eff9b98a003, type: 2}
@@ -2227,7 +2280,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - serializedVersion: 2
     m_RefCount: 1
-    m_Data: {fileID: 248180679, guid: a3c342601e4464046a9151acb7b64e1a, type: 3}
+    m_Data: {fileID: -1408843548, guid: a3c342601e4464046a9151acb7b64e1a, type: 3}
   - serializedVersion: 2
     m_RefCount: 1
     m_Data: {fileID: 815680254, guid: a3c342601e4464046a9151acb7b64e1a, type: 3}
@@ -4158,6 +4211,9 @@ MonoBehaviour:
   counterLayer:
     serializedVersion: 2
     m_Bits: 64
+  stationLayer:
+    serializedVersion: 2
+    m_Bits: 256
   interactRadius: 1
   heldItemOffset: {x: 0, y: 0, z: 0}
   counterItemOffset: {x: 0, y: 0, z: 0}

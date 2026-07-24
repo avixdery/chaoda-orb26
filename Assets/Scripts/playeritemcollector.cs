@@ -12,6 +12,7 @@ public class playerItemCollector : MonoBehaviour
     [Header("Interaction")]
     public LayerMask crateLayer;
     public LayerMask counterLayer;
+    public LayerMask stationLayer;
     public float interactRadius = 0.6f;
 
     [Header("Food Position Offsets")]
@@ -85,21 +86,27 @@ public class playerItemCollector : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(
             checkPosition,
             interactRadius,
-            crateLayer
+            crateLayer | stationLayer
         );
+
 
         if (hit == null)
         {
+            Debug.Log("No station found!");
             return false;
         }
+        Debug.Log("Found: " + hit.name);
+        Debug.Log("Hit object: " + hit.gameObject.name);
+        Debug.Log("Layer: " + LayerMask.LayerToName(hit.gameObject.layer));
 
         IInteractable interactable = hit.GetComponent<IInteractable>();
 
         if (interactable == null)
         {
+            Debug.Log("i see nothing");
             return false;
         }
-
+        Debug.Log("can interact");
         interactable.Interact(this);
         return true;
     }
@@ -112,7 +119,7 @@ public class playerItemCollector : MonoBehaviour
         Collider2D crateHit = Physics2D.OverlapCircle(
             checkPosition,
             interactRadius,
-            crateLayer
+            crateLayer | stationLayer
         );
         
         if (crateHit == null)
